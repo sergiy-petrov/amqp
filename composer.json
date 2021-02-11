@@ -1,15 +1,15 @@
 {
-  "name": "snovio/amqp",
+  "name": "ryaremenko/amqp",
   "description": "AMQP wrapper to publish and consume messages",
   "license": "MIT",
   "authors": [
     {
       "name": "Rodion Yaremenko",
-      "email": "ry@snov.io"
+      "email": "royaremenko@gmail.com"
     }
   ],
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.3",
     "php-amqplib/php-amqplib": ">=2.9",
     "ext-json": "*"
   },
