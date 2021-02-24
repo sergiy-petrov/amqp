@@ -27,5 +27,5 @@
       "Snovio\\Amqp\\Test\\": "test/"
     }
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "stable"
 }

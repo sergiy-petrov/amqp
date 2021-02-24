@@ -63,7 +63,6 @@ class AmqpConsumer
             false,  #no wait - TRUE: the server will not respond to the method. The client should not wait for a reply method
             function (AMQPMessage $message) use ($closure) {
                 $closure($message);
-                $message->ack();
 
                 gc_collect_cycles();
                 gc_mem_caches();
