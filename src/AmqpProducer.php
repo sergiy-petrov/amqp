@@ -21,24 +21,18 @@ class AmqpProducer
     }
 
     /**
-     * @param array $data
+     * @param string $message
      * @param string $queue
      * @param int $priority
-     * @throws \JsonException
      */
-    public function publish(array $data, string $queue, int $priority = 0): void
+    public function publish(string $message, string $queue, int $priority = 0): void
     {
         $msgAttr = [];
         if ($priority !== 0) {
             $msgAttr['priority'] = $priority;
         }
-        $msg = new AMQPMessage(json_encode($data, JSON_THROW_ON_ERROR), $msgAttr);
 
-        $this->AMQPConnection->getChannel()->basic_publish(
-            $msg,   #message
-            '',     #exchange
-            $queue  #routing key (queue)
-        );
+        $this->AMQPConnection->getChannel()->basic_publish(new AMQPMessage($message, $msgAttr), '', $queue);
     }
 
     /**
