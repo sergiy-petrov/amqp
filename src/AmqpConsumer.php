@@ -68,7 +68,13 @@ class AmqpConsumer
                 gc_mem_caches();
             }  #callback
         );
-
+        if (isset($properties['queue_bind']['exchange'], $properties['queue_bind']['routing_key'])) {
+            $this->AMQPConnection->getChannel()->queue_bind(
+                $queue,
+                $properties['queue_bind']['exchange'],
+                $properties['queue_bind']['routing_key']
+            );
+        }
         while (count($this->AMQPConnection->getChannel()->callbacks)) {
             $this->AMQPConnection->getChannel()->wait();
         }
