@@ -12,7 +12,6 @@ class AmqpProducer
     protected $AMQPConnection;
 
     /**
-     * RabbitMQModel constructor.
      * @param AmqpConnectionInterface $AMQPConnection
      */
     public function __construct(AmqpConnectionInterface $AMQPConnection)
