@@ -12,11 +12,11 @@ class AmqpProducerTest extends TestCase
 {
     /**
      * @dataProvider publishDataProvider
-     * @param array $message
+     * @param string $message
      * @param string $queue
      * @param int $priority
      */
-    public function testPublish(array $message, string $queue, int $priority): void
+    public function testPublish(string $message, string $queue, int $priority): void
     {
         $AMQPChannelMock = $this->createMock(AMQPChannel::class);
         $AMQPConnectionMock = $this->createMock(AmqpConnectionInterface::class);
@@ -30,7 +30,7 @@ class AmqpProducerTest extends TestCase
         if ($priority) {
             $msgAttr['priority'] = $priority;
         }
-        $msg = new AMQPMessage(json_encode($message, JSON_THROW_ON_ERROR), $msgAttr);
+        $msg = new AMQPMessage($message, $msgAttr);
         $AMQPChannelMock
             ->expects(self::once())
             ->method('basic_publish')
@@ -46,13 +46,13 @@ class AmqpProducerTest extends TestCase
     public function publishDataProvider(): array
     {
         $testCases['without priority'] = [
-            'message' => ['test'],
+            'message' => 'test',
             'queue' => 'test_queue',
             'priority' => 0
         ];
 
         $testCases['with priority'] = [
-            'message' => ['test'],
+            'message' => 'test',
             'queue' => 'test_queue',
             'priority' => 5
         ];
