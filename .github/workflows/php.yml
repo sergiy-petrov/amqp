@@ -20,6 +20,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
+          ini-values: "memory_limit=-1, zend.assertions=1, error_reporting=-1, display_errors=On"
           php-version: ${{ matrix.php }}
 
       - name: Validate composer.json and composer.lock
